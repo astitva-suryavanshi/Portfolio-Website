@@ -67,13 +67,44 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Generic Cursor-Driven Scroll Function
+    // Mobile Menu Toggle
+    const menuBtn = document.querySelector('.menu-btn');
+    const navLinks = document.querySelector('.nav-links');
+
+    if (menuBtn && navLinks) {
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = menuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-times');
+            } else {
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Close menu when a link is clicked
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.remove('fa-times');
+                icon.classList.add('fa-bars');
+            });
+        });
+    }
+
+    // Generic Cursor-Driven Scroll Function (Desktop Only)
     const applyCursorScroll = (containerSelector, trackSelector) => {
         const container = document.querySelector(containerSelector);
         const track = document.querySelector(trackSelector);
 
         if (container && track) {
             container.addEventListener('mousemove', (e) => {
+                // Skip if we are in mobile view (width <= 768)
+                if (window.innerWidth <= 768) return;
+
                 const rect = container.getBoundingClientRect();
                 const x = e.clientX - rect.left;
                 const percent = x / rect.width;
