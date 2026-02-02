@@ -461,38 +461,7 @@ section {
     color: var(--text-muted);
 }
 
-.loop-text-container {
-    text-align: center;
-    margin-top: 2rem;
-    padding: 1rem;
-    opacity: 0.8;
-}
 
-.loop-text {
-    font-size: 1.1rem;
-    font-weight: 500;
-    color: var(--text-muted);
-    letter-spacing: 1px;
-    animation: floatText 3s ease-in-out infinite;
-}
-
-.loop-text span {
-    color: var(--primary-color);
-    font-weight: 700;
-    text-shadow: 0 0 10px rgba(0, 210, 255, 0.5);
-}
-
-@keyframes floatText {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-5px);
-    }
-}
 
 /* Contact */
 .contact-wrapper {
